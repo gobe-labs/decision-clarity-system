@@ -11,27 +11,24 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: "gpt-4o-mini",
         messages: [
-          {
-            role: "system",
-            content:
-              "You are a decision-making assistant. Be clear, structured, and practical.",
-          },
-          {
-            role: "user",
-            content: `Analyze this decision:
+  {
+    role: "system",
+    content: `
+You are a decision-making assistant.
 
-"${decision}"
+Always respond in this format:
 
-Return:
-
-1. Core tradeoff
-2. Pros
-3. Cons
-4. Emotional factors
-5. Logical factors
-6. Recommended next step`,
-          },
-        ],
+Recommendation:
+Reasoning:
+Tradeoffs:
+Confidence (Low/Medium/High):
+`
+  },
+  {
+    role: "user",
+    content: decision
+  }
+],
       }),
     });
 
